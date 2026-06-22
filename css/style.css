@@ -22,6 +22,16 @@
     transparent 35%),
     #0f172a;
 }
+body.dark-mode #toast{
+    background:rgba(30,41,59,0.9);
+    color:#f8fafc;
+
+    border:1px solid rgba(110,231,216,0.4);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.4),
+        0 0 25px rgba(110,231,216,0.15);
+}
 
  body.dark-mode .hero-left,
 body.dark-mode .about-container,
@@ -880,8 +890,8 @@ gap:15px;
 
 /* textarea height */
 .input-box textarea{
-    min-height:120px;
-    resize:none;
+      min-height:120px;
+    resize:vertical;
 }
 
 /* LABEL */
@@ -895,11 +905,10 @@ gap:15px;
     pointer-events:none;
 }
 
-/* floating effect */
-.input-box input:focus + label,
-.input-box input:valid + label,
+ .input-box input:focus + label,
+.input-box input:not(:placeholder-shown) + label,
 .input-box textarea:focus + label,
-.input-box textarea:valid + label{
+.input-box textarea:not(:placeholder-shown) + label{
     top:-10px;
     left:10px;
     font-size:12px;
@@ -1116,4 +1125,80 @@ gap:15px;
     }
 
 
+}
+
+ /* #toast{
+    position:fixed;
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%, -50%) scale(0.8);
+
+    background:rgba(206, 248, 243, 0.95);
+    color:#0f172a;
+
+    padding:16px 28px;
+    border-radius:14px;
+
+    font-weight:600;
+    font-size:15px;
+
+    backdrop-filter:blur(12px);
+
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:all .3s ease;
+
+    z-index:9999;
+}
+
+#toast.show{
+    opacity:1;
+    visibility:visible;
+    transform:translate(-50%, -50%) scale(1);
+} */
+ #toast{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%) scale(0.9);
+
+    min-width:320px;
+    text-align:center;
+
+    padding:20px 30px;
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.35);
+    backdrop-filter:blur(50px);
+    -webkit-backdrop-filter:blur(50px);
+
+    border:1px solid rgba(255,255,255,0.5);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.25);
+
+    /* color:white; */
+    font-weight:700;
+    font-size:16px;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:all .3s ease;
+    z-index:9999;
+}
+
+#toast.show{
+    opacity:1;
+    visibility:visible;
+    transform:translate(-50%, -50%) scale(1);
+}
+
+#toast.error{
+    background:rgba(239,68,68,0.95);
+    color:white;
 }

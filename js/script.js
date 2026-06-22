@@ -1,27 +1,50 @@
+
 emailjs.init("GhSqzDplyb2I4_NOk");
+
+function showToast(message, isError = false){
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.remove("error");
+
+    if(isError){
+        toast.classList.add("error");
+    }
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3000);
+}
 
 document.getElementById("contact-form")
 .addEventListener("submit", function(event){
 
     event.preventDefault();
 
-    emailjs.send("service_yomw582",
-                 "template_u6uvh4s",
-    {
-        from_name: document.getElementById("name").value,
-        from_email: document.getElementById("email").value,
-        message: document.getElementById("message").value
-    })
+    emailjs.send(
+        "service_yomw582",
+        "template_u6uvh4s",
+        {
+            from_name: document.getElementById("name").value,
+            from_email: document.getElementById("email").value,
+            message: document.getElementById("message").value
+        }
+    )
     .then(function(){
 
-        alert("Message sent successfully!");
+        showToast("✨ Message sent successfully!");
 
         document.getElementById("contact-form").reset();
 
     })
     .catch(function(error){
 
-        alert("Failed to send message.");
+        showToast("❌ Failed to send message!", true);
+
         console.log(error);
 
     });
